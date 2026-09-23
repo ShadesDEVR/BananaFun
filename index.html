@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BananaFun — Games, Music & More</title>
+<meta name="description" content="BananaFun classroom-friendly games, music, chat and community hub.">
+<style>
+:root{--bg:#fffaf0;--panel:#fff;--ink:#17140d;--muted:#746b59;--yellow:#ffd43b;--yellow2:#ffbf00;--line:#eadfca;--red:#ef4444;--green:#16a34a;--shadow:0 14px 40px #7a5d0017}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#fffdf7,#fff5c9);color:var(--ink);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.top{height:70px;border-bottom:1px solid var(--line);background:#ffffffdf;backdrop-filter:blur(18px);display:flex;align-items:center;gap:24px;padding:0 24px;position:sticky;top:0;z-index:20}.brand{font-weight:900;font-size:22px;display:flex;align-items:center;gap:9px}.banana{font-size:27px}.nav{display:flex;gap:4px;overflow:auto}.nav button,.ghost{border:0;background:transparent;padding:10px 13px;border-radius:10px;color:#554d3f;font-weight:700}.nav button:hover,.nav .active{background:#fff0a8;color:#201b0d}.spacer{flex:1}.profile-mini{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:white;border-radius:13px;padding:7px 11px;font-weight:800}.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#ffe47a;font-size:18px;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}
+main{max-width:1180px;margin:0 auto;padding:42px 22px 100px}.hero{padding:38px 0 30px}.eyebrow{display:inline-flex;background:#fff0a8;border:1px solid #f1d65d;padding:7px 11px;border-radius:99px;font-weight:900;font-size:12px}.hero h1{font-size:clamp(42px,7vw,76px);line-height:.98;margin:18px 0 15px;letter-spacing:-4px}.hero p{font-size:18px;color:var(--muted);max-width:700px;line-height:1.65}.actions{display:flex;gap:10px;flex-wrap:wrap}.primary{background:#17140d;color:white;border:0;border-radius:12px;padding:12px 18px;font-weight:900}.yellow{background:var(--yellow);color:#17140d;border:0;border-radius:12px;padding:12px 18px;font-weight:900}.outline{background:white;color:#17140d;border:1px solid var(--line);border-radius:12px;padding:11px 17px;font-weight:800}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:34px 0 15px}.section-head h2{margin:0;font-size:26px}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.game{min-height:165px;display:flex;flex-direction:column;justify-content:space-between}.game-icon{font-size:34px}.game h3{margin:10px 0 5px}.tag{display:inline-block;border-radius:99px;background:#f5f0e5;padding:4px 8px;font-size:11px;font-weight:900;color:#675e50}.tag.green{background:#dcfce7;color:#166534}.tag.red{background:#fee2e2;color:#991b1b}
+.page{display:none}.page.show{display:block}.form-wrap{max-width:520px;margin:30px auto}.form-card{background:white;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}label{display:block;font-size:13px;font-weight:900;margin:14px 0 6px}input,textarea,select{width:100%;border:1px solid #dcd2bf;border-radius:11px;padding:12px;background:#fffdf8;outline:none}input:focus,textarea:focus{border-color:#d3aa00;box-shadow:0 0 0 3px #ffd43b33}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{padding:13px 15px;border-radius:12px;background:#fff7cf;border:1px solid #efda6b;margin:14px 0}.danger{background:#fff0f0;border-color:#fecaca}.success{background:#effdf3;border-color:#bbf7d0}
+.modal-bg{position:fixed;inset:0;background:#17140d88;display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal-bg.show{display:flex}.modal{background:#fffdf7;border:1px solid var(--line);border-radius:22px;max-width:560px;width:100%;padding:25px;box-shadow:0 25px 90px #0005}.modal h2{margin-top:0}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{padding:20px;border:2px solid var(--line);background:white;border-radius:16px;text-align:left}.choice:hover{border-color:#d7b500}.choice strong{display:block;font-size:18px;margin-bottom:7px}
+.chat{height:440px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto;background:#fffdf8;border:1px solid var(--line);border-radius:15px;padding:14px}.msg{padding:9px 11px;background:#f6f0e4;border-radius:12px;margin:7px 0;max-width:80%}.msg b{font-size:12px}.composer{display:flex;gap:8px;margin-top:10px}.composer input{flex:1}
+.profile-panel{position:fixed;left:16px;bottom:16px;width:255px;background:#fff;border:1px solid var(--line);border-radius:17px;padding:13px;box-shadow:var(--shadow);z-index:15}.profile-panel .name{font-weight:900}.profile-actions{display:flex;gap:6px;margin-top:10px}.profile-actions button{flex:1}
+.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{font-size:30px;font-weight:950}.rank{font-size:12px;font-weight:900;background:#fff0a8;padding:4px 7px;border-radius:99px}
+.footer{border-top:1px solid var(--line);padding:28px 22px;color:var(--muted);text-align:center}.hidden{display:none!important}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.admin-grid{grid-template-columns:1fr 1fr}.nav{display:none}.profile-panel{position:static;width:auto;margin:18px 22px}.top{padding:0 14px}}
+@media(max-width:560px){.grid,.admin-grid,.row,.choice-grid{grid-template-columns:1fr}.hero h1{letter-spacing:-2px}.top{height:62px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="banana">🍌</span> BananaFun</div>
+  <nav class="nav" id="nav">
+    <button data-page="home">Home</button><button data-page="games">Games</button><button data-page="music">Music</button><button data-page="chat">Chat</button><button data-page="ai">AI Game Maker</button><button data-page="updates">Updates</button><button data-page="suggestions">Suggestions</button><button data-page="about">About</button>
+  </nav>
+  <div class="spacer"></div><div id="topAccount"></div>
+</header>
+
+<main>
+<section id="home" class="page show">
+ <div class="hero">
+  <span class="eyebrow">🍌 THE INTERNET'S BANANIEST HUB</span>
+  <h1>Welcome to<br>BananaFun.</h1>
+  <p>Games, music, chat, experiments and more — all in one place. Create an account to personalize your BananaFun experience.</p>
+  <div class="actions"><button class="yellow" onclick="openAuth('signup')">Create an account</button><button class="outline" onclick="openAuth('login')">I already have an account</button></div>
+ </div>
+ <div class="section-head"><h2>Featured games</h2><button class="ghost" onclick="showPage('games')">View all →</button></div>
+ <div class="grid" id="featured"></div>
+ <div class="section-head"><h2>What's new</h2><button class="ghost" onclick="showPage('updates')">All updates →</button></div>
+ <div id="homeUpdates"></div>
+</section>
+
+<section id="games" class="page"><div class="section-head"><div><h2>🎮 Games</h2><p class="muted">Pick something and start playing.</p></div></div><div class="grid" id="gamesGrid"></div></section>
+
+<section id="music" class="page"><div class="section-head"><div><h2>🎵 Music</h2><p class="muted">Requests are reviewed by moderators before they appear.</p></div></div><div class="card"><div class="row"><div><label>Song title</label><input id="songTitle" placeholder="e.g. My favorite song"></div><div><label>Artist</label><input id="songArtist" placeholder="Artist"></div></div><label>Link</label><input id="songLink" placeholder="YouTube or other music URL"><br><br><button class="yellow" onclick="requestSong()">Request music</button><div id="musicStatus"></div></div><div class="section-head"><h2>Approved music</h2></div><div id="musicList"></div></section>
+
+<section id="chat" class="page"><div class="section-head"><div><h2>💬 Community Chat</h2><p class="muted">Keep it friendly. Moderation tools are built in.</p></div></div><div class="card chat"><div class="messages" id="messages"></div><div class="composer"><input id="chatInput" placeholder="Send a message..." onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div></div></section>
+
+<section id="ai" class="page"><div class="section-head"><div><h2>🤖 AI Game Maker</h2><p class="muted">Describe a simple game and BananaFun will turn the idea into a playable mini-game prototype.</p></div></div><div class="card"><label>What do you want to play?</label><textarea id="gamePrompt" rows="5" placeholder="Make me a game where I catch bananas while avoiding falling coconuts..."></textarea><br><br><button class="yellow" onclick="makeGame()">✨ Make my game</button><div id="aiResult"></div></div></section>
+
+<section id="updates" class="page"><div class="section-head"><div><h2>📢 Updates</h2><p class="muted">News from the BananaFun team.</p></div></div><div id="updatesList"></div></section>
+<section id="suggestions" class="page"><div class="section-head"><div><h2>💡 Suggestions</h2><p class="muted">Have an idea? Send it to the team.</p></div></div><div class="card"><label>Suggestion</label><textarea id="suggestionText" rows="5" placeholder="What should BananaFun add?"></textarea><br><br><button class="yellow" onclick="submitSuggestion()">Submit suggestion</button><div id="suggestionStatus"></div></div></section>
+
+<section id="about" class="page"><div class="form-wrap"><div class="form-card"><h2>🍌 Hello, I'm Adam Cocolin.</h2><p class="muted">I made this website because I am tired. So I made BananaFun instead.</p><p>BananaFun is a community hub for games, music, experiments and fun. The project is designed around a simple idea: make it easy to find something fun without turning the site into a mess.</p><div class="notice">Default ranks: Member · Trusted · Helper · Mod · Admin · HR · Executive · Owner · Founder · Developer</div></div></div></section>
+
+<section id="admin" class="page"><div class="section-head"><div><h2>🛡️ Admin Panel</h2><p class="muted">Moderation and community management.</p></div></div><div class="admin-grid"><div class="card"><div class="stat" id="userCount">0</div><div class="muted">Local accounts</div></div><div class="card"><div class="stat" id="songCount">0</div><div class="muted">Music requests</div></div><div class="card"><div class="stat" id="suggestCount">0</div><div class="muted">Suggestions</div></div></div><div class="section-head"><h2>Users</h2></div><div id="usersList"></div></section>
+</main>
+
+<div id="profilePanel" class="profile-panel hidden"></div>
+<footer class="footer">🍌 BananaFun · Made for fun · <span id="year"></span></footer>
+
+<div class="modal-bg" id="authModal"><div class="modal">
+ <div id="authContent"></div>
+</div></div>
+<div class="modal-bg" id="guardianModal"><div class="modal">
+ <h2>Before you enter 🍌</h2><p>Are you <b>GoGuardian blocked</b> or <b>unblocked</b>?</p><p class="muted">This controls BananaFun's restricted browsing mode. Your choice is saved for this browser.</p>
+ <div class="choice-grid"><button class="choice" onclick="setGuardian('blocked')"><strong>🔒 Blocked</strong>Limited permissions and media restrictions.</button><button class="choice" onclick="setGuardian('unblocked')"><strong>🔓 Unblocked</strong>Full BananaFun features.</button></div>
+</div></div>
+<div class="modal-bg" id="gameModal"><div class="modal"><div id="gameContent"></div><button class="outline" onclick="closeModal('gameModal')">Close</button></div></div>
+
+<script>
+const KEY='bananaFunStateV1';
+const defaultState={users:[],current:null,guardian:null,music:[],suggestions:[],updates:[
+ {title:'Welcome to BananaFun',text:'The first BananaFun build is live. Games, chat and community tools are ready.',date:'Today'},
+ {title:'Music requests are open',text:'Request music and moderators can approve it for the community player.',date:'Today'}
+],messages:[{u:'BananaFun',t:'Welcome to community chat! 🍌'}]};
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||defaultState;
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render();}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const games=[
+ ['💸','Spend Us Money','Money','Spend an absurd amount of money.','spend'],
+ ['🧑‍💼','Spend Bill Gates\' Money','Money','Try to spend a billionaire\'s fortune.','bills'],
+ ['🐍','Snake','Arcade','Eat bananas and grow.','snake'],
+ ['👾','Pac-Banana','Arcade','A tiny banana-themed maze game.','pac'],
+ ['⬛','Geometry Dash','Arcade','Jump, dodge and survive the beat.','dash'],
+ ['🧪','Sandbox','Experiment','Build your own little playground.','sandbox'],
+ ['⚡','Auto Clicker','Tools','Click fast. Very fast.','clicker'],
+ ['🎯','Kahoot Zone','Learning','A BananaFun quiz room.','kahoot'],
+ ['📚','Blooket Zone','Learning','A BananaFun quiz challenge.','blooket'],
+ ['🌐','Neal.fun Arcade','Experiments','Explore web experiments.','neal']
+];
+function gameCard(g){return '<div class="card game"><div><span class="game-icon">'+g[0]+'</span><h3>'+g[1]+'</h3><span class="tag">'+g[2]+'</span><p class="muted">'+g[3]+'</p></div><button class="outline" onclick="launchGame(\''+g[4]+'\')">Play →</button></div>'}
+function renderGames(){document.getElementById('gamesGrid').innerHTML=games.map(gameCard).join('');document.getElementById('featured').innerHTML=games.slice(0,4).map(gameCard).join('')}
+function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));let p=document.getElementById(id);if(p)p.classList.add('show');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='admin')renderAdmin();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+function openAuth(mode){document.getElementById('authModal').classList.add('show');document.getElementById('authContent').innerHTML=mode==='signup'?signupForm():loginForm()}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function signupForm(){return '<h2>Create your BananaFun account 🍌</h2><p class="muted">Your username must be unique.</p><label>Username *</label><input id="su" maxlength="20" placeholder="banana123"><div class="row"><div><label>Real name (optional)</label><input id="sr"></div><div><label>Profile picture URL (optional)</label><input id="sp" placeholder="https://..."></div></div><label>Bio (optional)</label><textarea id="sb" rows="3"></textarea><label>Password *</label><input id="sw" type="password" minlength="6"><div class="notice">Never reuse a password you use elsewhere.</div><button class="yellow" onclick="signup()">Create account</button> <button class="ghost" onclick="openAuth(\'login\')">Log in</button><div id="authErr"></div>'}
+function loginForm(){return '<h2>Welcome back 🍌</h2><label>Username</label><input id="lu"><label>Password</label><input id="lw" type="password"><br><br><button class="yellow" onclick="login()">Log in</button> <button class="ghost" onclick="openAuth(\'signup\')">Create account</button><div id="authErr"></div>'}
+function err(t){document.getElementById('authErr').innerHTML='<div class="notice danger">'+esc(t)+'</div>'}
+function signup(){let u=document.getElementById('su').value.trim();let w=document.getElementById('sw').value;if(!/^[a-zA-Z0-9_]{3,20}$/.test(u))return err('Username must be 3–20 letters, numbers or underscores.');if(state.users.some(x=>x.u.toLowerCase()===u.toLowerCase()))return err('That username is already taken.');if(w.length<6)return err('Password must be at least 6 characters.');let user={u,w,r:document.getElementById('sr').value.trim(),b:document.getElementById('sb').value.trim(),p:document.getElementById('sp').value.trim(),ranks:['Member'],warnings:[],timeoutUntil:0,bannedUntil:0};state.users.push(user);state.current=u;state.guardian=null;save();closeModal('authModal');document.getElementById('guardianModal').classList.add('show')}
+function login(){let u=document.getElementById('lu').value.trim(),w=document.getElementById('lw').value,user=state.users.find(x=>x.u.toLowerCase()===u.toLowerCase()&&x.w===w);if(!user)return err('Username or password is incorrect.');if(user.bannedUntil&&user.bannedUntil>Date.now())return err('You are currently banned.');state.current=user.u;state.guardian=null;save();closeModal('authModal');document.getElementById('guardianModal').classList.add('show')}
+function setGuardian(v){state.guardian=v;localStorage.setItem(KEY,JSON.stringify(state));closeModal('guardianModal');render()}
+function ensure(){if(!state.current){openAuth('signup');return false}return true}
+function current(){return state.users.find(x=>x.u===state.current)}
+function renderAccount(){let u=current();let top=document.getElementById('topAccount'),panel=document.getElementById('profilePanel');if(!u){top='<button class="yellow" onclick="openAuth(\'signup\')">Sign up</button>';panel.classList.add('hidden')}else{let av=u.p?'<img src="'+esc(u.p)+'">':'🍌';top='<button class="profile-mini" onclick="showPage(\'about\')"><span class="avatar">'+av+'</span>'+esc(u.u)+'</button>';panel.classList.remove('hidden');panel.innerHTML='<div class="avatar">'+av+'</div><div class="name">'+esc(u.u)+'</div><div class="muted">'+esc(u.b||'BananaFun member')+'</div><div style="margin-top:7px">'+u.ranks.map(r=>'<span class="rank">'+esc(r)+'</span> ').join('')+' <span class="tag '+(state.guardian==='blocked'?'red':'green')+'">'+esc(state.guardian||'Unknown')+'</span></div><div class="profile-actions"><button class="outline" onclick="editProfile()">Profile</button><button class="outline" onclick="logout()">Logout</button></div>';if(u.ranks.includes('Admin')||u.ranks.includes('Owner')||u.ranks.includes('Founder'))panel.innerHTML+='<button class="outline" style="width:100%;margin-top:6px" onclick="showPage(\'admin\')">Admin panel</button>'}document.getElementById('topAccount').innerHTML=top}
+function logout(){state.current=null;state.guardian=null;save();showPage('home')}
+function editProfile(){let u=current();openAuth('signup');document.getElementById('authContent').innerHTML='<h2>Edit profile</h2><label>Bio</label><textarea id="eb" rows="4">'+esc(u.b)+'</textarea><label>Profile picture URL</label><input id="ep" value="'+esc(u.p)+'"><br><br><button class="yellow" onclick="saveProfile()">Save</button>'}
+function saveProfile(){let u=current();u.b=document.getElementById('eb').value.trim();u.p=document.getElementById('ep').value.trim();save();closeModal('authModal')}
+function requestSong(){if(!ensure())return;let t=document.getElementById('songTitle').value.trim(),a=document.getElementById('songArtist').value.trim(),l=document.getElementById('songLink').value.trim();if(!t)return;state.music.push({t,a,l,u:state.current,approved:false});save();document.getElementById('musicStatus').innerHTML='<div class="notice success">Request submitted for moderator approval.</div>'}
+function renderMusic(){let el=document.getElementById('musicList');let approved=state.music.filter(x=>x.approved);el.innerHTML=approved.length?approved.map(x=>'<div class="card" style="margin:10px 0"><b>🎵 '+esc(x.t)+'</b> — '+esc(x.a)+'<div class="muted">Requested by '+esc(x.u)+'</div>'+(x.l?'<a href="'+esc(x.l)+'" target="_blank" rel="noopener" class="yellow" style="display:inline-block;margin-top:9px;text-decoration:none">Open music</a>':'')+'</div>').join(''):'<div class="card muted">No approved music yet.</div>'}
+function sendChat(){if(!ensure())return;let u=current();if(u.timeoutUntil>Date.now())return alert('You are timed out and cannot chat right now.');let t=document.getElementById('chatInput').value.trim();if(!t)return;if(state.guardian==='blocked' && /https?:\/\//i.test(t))return alert('Blocked mode does not allow links in chat.');state.messages.push({u:state.current,t});document.getElementById('chatInput').value='';save()}
+function renderChat(){document.getElementById('messages').innerHTML=state.messages.map(m=>'<div class="msg"><b>'+esc(m.u)+'</b><br>'+esc(m.t)+'</div>').join('');let e=document.getElementById('messages');e.scrollTop=e.scrollHeight}
+function submitSuggestion(){if(!ensure())return;let t=document.getElementById('suggestionText').value.trim();if(!t)return;state.suggestions.push({u:state.current,t,date:new Date().toLocaleString()});save();document.getElementById('suggestionStatus').innerHTML='<div class="notice success">Thanks! Your suggestion was submitted.</div>';document.getElementById('suggestionText').value=''}
+function renderUpdates(){let h=state.updates.map(x=>'<div class="card" style="margin:10px 0"><span class="tag">'+esc(x.date)+'</span><h3>'+esc(x.title)+'</h3><p class="muted">'+esc(x.text)+'</p></div>').join('');document.getElementById('updatesList').innerHTML=h;document.getElementById('homeUpdates').innerHTML=state.updates.slice(0,2).map(x=>'<div class="card" style="margin:10px 0"><b>'+esc(x.title)+'</b><p class="muted">'+esc(x.text)+'</p></div>').join('')}
+function makeGame(){if(!ensure())return;let p=document.getElementById('gamePrompt').value.trim();if(!p)return;document.getElementById('aiResult').innerHTML='<div class="notice success"><b>Prototype generated!</b><p>Your idea: '+esc(p)+'</p><button class="primary" onclick="launchGame(\'sandbox\')">Launch playable prototype →</button></div>'}
+function launchGame(id){let g=games.find(x=>x[4]===id);document.getElementById('gameModal').classList.add('show');let html='<h2>'+g[0]+' '+g[1]+'</h2><p class="muted">'+g[3]+'</p>';if(id==='clicker')html+='<button class="yellow" style="font-size:26px;width:100%;padding:28px" onclick="this.textContent=\'🍌 Bananas: \'+(++window.bc||1)">🍌 Click me!</button>';else if(id==='spend'||id==='bills')html+='<div class="notice"><b>$<span id="money">1000000000</span></b> remaining</div><button class="yellow" onclick="spend(1000000)">Spend $1,000,000</button> <button class="outline" onclick="spend(10000)">Spend $10,000</button>';else if(id==='snake')html+='<div class="notice">Snake mini-game prototype: use the button below to score bananas.</div><button class="yellow" onclick="this.textContent=\'🍌 Score: \'+(++window.sn||1)">Eat banana</button>';else html+='<div class="notice"><b>'+esc(g[1])+' prototype</b><br>This game slot is ready for a full game module to be added from the developer panel.</div>';document.getElementById('gameContent').innerHTML=html}
+function spend(n){let e=document.getElementById('money');let v=Math.max(0,Number(e.textContent.replace(/,/g,''))-n);e.textContent=v.toLocaleString()}
+function renderAdmin(){let is=current()&&(current().ranks.includes('Admin')||current().ranks.includes('Owner')||current().ranks.includes('Founder'));if(!is){showPage('home');return}document.getElementById('userCount').textContent=state.users.length;document.getElementById('songCount').textContent=state.music.length;document.getElementById('suggestCount').textContent=state.suggestions.length;document.getElementById('usersList').innerHTML=state.users.map((u,i)=>'<div class="card" style="margin:8px 0;display:flex;justify-content:space-between;gap:10px;align-items:center"><div><b>'+esc(u.u)+'</b><div class="muted">'+u.ranks.map(esc).join(', ')+' · '+(u.bannedUntil>Date.now()?'Banned':'Active')+'</div></div><div><button class="outline" onclick="toggleTrusted('+i+')">Toggle Trusted</button> <button class="outline" onclick="banUser('+i+')">Ban</button></div></div>').join('')}
+function toggleTrusted(i){let u=state.users[i];u.ranks.includes('Trusted')?u.ranks=u.ranks.filter(x=>x!=='Trusted'):u.ranks.push('Trusted');save();showPage('admin')}
+function banUser(i){let reason=prompt('Ban reason:');if(reason===null)return;state.users[i].bannedUntil=Date.now()+86400000;state.users[i].banReason=reason;save();showPage('admin')}
+function render(){renderAccount();renderGames();renderMusic();renderChat();renderUpdates();if(state.current&&state.guardian===null&&!document.getElementById('guardianModal').classList.contains('show'))document.getElementById('guardianModal').classList.add('show')}
+document.getElementById('year').textContent=new Date().getFullYear();render();
+</script>
+</body>
+</html>
